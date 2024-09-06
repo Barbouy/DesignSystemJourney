@@ -1,19 +1,26 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-04-03',
+  app: {
+    head: {
+      title: "DS Journey"
+    }
+  },
+  compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
-  css: ['~/assets/css/main.css'],
+  css: ["~/assets/css/main.css"],
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
+  modules: ["@nuxt/eslint"],
   eslint: {
     config: {
-      standalone: false,
-      autoInit: false
-    }
+      stylistic: {
+        "semi": false,
+        "quotes": "double"
+      },
+    },
   },
-  modules: ['@nuxt/eslint'],
 })

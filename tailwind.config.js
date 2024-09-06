@@ -11,7 +11,12 @@ export default {
     "./error.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      transitionTimingFunction: {
+        "in-expo": "cubic-bezier(0.95, 0.05, 0.795, 0.035)",
+        "out-expo": "cubic-bezier(0.19, 1, 0.22, 1)",
+      },
+    },
     fontFamily: {
       sans: ["lato", "sans-serif"],
     },
@@ -22,7 +27,7 @@ export default {
       "lg": ["16px", "24px"],
       "xl": ["20px", "28px"],
       "2xl": ["24px", "32px"],
-      "3xl": ["30px", "36px"]
+      "3xl": ["30px", "36px"],
     },
   },
   plugins: [
@@ -31,4 +36,3 @@ export default {
     }),
   ],
 }
-
