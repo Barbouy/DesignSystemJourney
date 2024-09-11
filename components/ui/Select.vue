@@ -2,6 +2,8 @@
   <div
     ref="select"
     class="flex items-center w-full gap-2 px-3 transition-shadow bg-white border border-gray-200 rounded-lg shadow-sm cursor-pointer h-9 hover:shadow"
+    @mouseover="isHover = true"
+    @mouseleave="isHover = false"
     @click="isOpen = !isOpen"
   >
     <span
@@ -12,7 +14,8 @@
     </span>
     <i
       v-if="selectedOption"
-      class="i-mdi-close-circle shrink-0"
+      :class="isHover ? 'opacity-100' : 'opacity-0'"
+      class="transition-all duration-150 i-mdi-close-circle shrink-0 text-neutral-400 hover:text-neutral-900"
       @click.stop="selectedOption = null"
     />
     <i class="i-mdi-chevron-down shrink-0" />
@@ -26,14 +29,20 @@
       class="absolute flex flex-col py-2 bg-white border border-gray-200 rounded-lg top-10"
       :style="optionsPosition"
     >
+      <div class="w-full">
+        <input
+          v-model="search"
+          class="w-full"
+        >
+      </div>
       <div
-        v-for="i in 4"
-        :key="i"
+        v-for="option in formattedOptions"
+        :key="option.value"
         class="flex items-center h-8 px-4 bg-white cursor-pointer hover:bg-gray-50"
-        @click="handleSelect(i)"
+        @click="handleSelect(option.value)"
       >
         <span>
-          Option {{ i }}
+          {{ option.label }}
         </span>
       </div>
     </div>
@@ -44,6 +53,8 @@
 const isOpen = ref(false)
 const select = ref<HTMLDivElement | null>(null)
 const selectedOption = ref<string | null>(null)
+const isHover = ref(false)
+const search = ref("")
 
 const position = ref({ left: 0, top: 0, width: 0 })
 
@@ -76,4 +87,27 @@ function handleSelect(i: number) {
   selectedOption.value = `Option ${i}`
   isOpen.value = false
 }
+
+const formattedOptions = computed(() => {
+  const options = [
+    {
+      label: "John Doe",
+      value: "123",
+    },
+    {
+      label: "Jane Doe",
+      value: "456",
+    },
+    {
+      label: "John Smith",
+      value: "789",
+    },
+    {
+      label: "Jane Smith",
+      value: "101",
+    },
+  ]
+
+  return options.filter(option => option.label.toLowerCase().includes(search.value.toLowerCase()))
+})
 </script>

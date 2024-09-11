@@ -1,5 +1,5 @@
 <template>
-  <Table
+  <UiTable
     :columns="columns"
     :rows="rows"
   >
@@ -16,7 +16,7 @@
         <span>{{ scope.row.city }}</span>
       </div>
     </template>
-  </Table>
+  </UiTable>
 </template>
 
 <script lang="ts" setup>

@@ -1,6 +1,6 @@
 <template>
   <div class="w-52">
-    <Select />
+    <UiSelect />
   </div>
 </template>
 

@@ -7,7 +7,8 @@
             v-for="column in formattedColumns"
             :key="column.key"
             class="px-4 py-0"
-            :style="{ minWidth: column.minWidth, width: column.width, maxWidth: column.maxWidth }">
+            :style="{ minWidth: column.minWidth, width: column.width, maxWidth: column.maxWidth }"
+          >
             <div class="flex items-center gap-2 font-medium">
               <i
                 v-if="column.icon"
@@ -29,10 +30,12 @@
             v-for="column in formattedColumns"
             :key="column.key"
             class="px-4 py-0 truncate"
-            :style="{ minWidth: column.minWidth, width: column.width, maxWidth: column.maxWidth }">
+            :style="{ minWidth: column.minWidth, width: column.width, maxWidth: column.maxWidth }"
+          >
             <slot
               :name="column.key"
-              :row="row">
+              :row="row"
+            >
               {{ row[column.key] || '-' }}
             </slot>
           </td>
